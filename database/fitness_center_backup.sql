@@ -36,6 +36,15 @@ CREATE TABLE `coach` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `coach`
+--
+
+LOCK TABLES `coach` WRITE;
+/*!40000 ALTER TABLE `coach` DISABLE KEYS */;
+/*!40000 ALTER TABLE `coach` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `customer`
 --
 
@@ -52,6 +61,15 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `feedback`
@@ -78,6 +96,15 @@ CREATE TABLE `feedback` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `feedback`
+--
+
+LOCK TABLES `feedback` WRITE;
+/*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
+/*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `order_program`
 --
 
@@ -94,6 +121,15 @@ CREATE TABLE `order_program` (
   CONSTRAINT `order_program_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_program`
+--
+
+LOCK TABLES `order_program` WRITE;
+/*!40000 ALTER TABLE `order_program` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_program` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `program`
@@ -118,6 +154,42 @@ CREATE TABLE `program` (
   CONSTRAINT `program_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `program`
+--
+
+LOCK TABLES `program` WRITE;
+/*!40000 ALTER TABLE `program` DISABLE KEYS */;
+/*!40000 ALTER TABLE `program` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `login` varchar(100) DEFAULT NULL,
+  `password` varchar(30) DEFAULT NULL,
+  `is_admin` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id`) REFERENCES `customer` (`id`),
+  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`id`) REFERENCES `coach` (`coach_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -128,4 +200,4 @@ CREATE TABLE `program` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-04 16:58:29
+-- Dump completed on 2022-02-09 16:43:56
