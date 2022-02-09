@@ -2,6 +2,17 @@ CREATE DATABASE fitness_center;
 
 USE fitness_center;
 
+
+CREATE TABLE IF NOT EXISTS user
+(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    login VARCHAR(100),
+    password VARCHAR(30),
+    is_admin BOOL,
+    FOREIGN KEY (id) REFERENCES customer (id),
+    FOREIGN KEY (id) REFERENCES coach (coach_id)
+);
+
 CREATE TABLE IF NOT EXISTS customer
 (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -55,5 +66,5 @@ CREATE TABLE IF NOT EXISTS feedback
     FOREIGN KEY (customer_id) REFERENCES customer (id),
     FOREIGN KEY (coach_id) REFERENCES coach (coach_id),
     FOREIGN KEY (program_id) REFERENCES program (program_id)
-    );
+);
 
