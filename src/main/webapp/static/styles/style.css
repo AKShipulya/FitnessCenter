@@ -1,0 +1,9 @@
+.container {
+    background-color: gray;
+    padding: 10px;
+}
+
+.login-row {
+    display: block;
+    margin-bottom: 10px;
+}
