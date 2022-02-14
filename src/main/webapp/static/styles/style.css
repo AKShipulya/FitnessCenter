@@ -1,9 +1,232 @@
-.container {
-    background-color: gray;
-    padding: 10px;
+* {
+    box-sizing: border-box;
 }
 
-.login-row {
-    display: block;
+body {
+    margin: 0;
+    background-image: url(./../images/main/back-ground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif; /*указание, какой будет шрифт*/
+    text-shadow: 3px 3px 3px #7c7b7b64;
+    color: #000000; /*указание, какой будет цвет текста*/
+    background-color: white;
+}
+
+.content {
+    max-width: 1110px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* header */
+
+.header {
+    position: relative; /*определяем модуль flex-box для блока .header*/
+    display: flex;
+    flex-direction: column; 
+    /*задаем направление колонки - выстараиваем flex-елементы в колонку - основная ость - у*/
+    justify-content: center; /*выравнивание по основной оси*/
+    align-items: center; /*выравнивание по поперечной оси*/
+
+    width: 100%;
+    height: 15vh; /*растягивание заливки по вертикали, т.к. при указании в % заливка будет только по содержанию хедера*/
+
+    /*определяем модель flex-box для блока header*/
+    /*background-image: url(path);*/
+    /*background-size: cover; /*чтобы картинка фона была заливкой и не дублировалась*/
+    background-position: center;
+}
+
+.header-title {
+    margin: 0;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 130%; /*высота строки - 1,3 * 56 = 72,8*/
+
+    text-align: center;
+    color: #89d5e6ea;
+}
+
+.header-subtitle {
+    margin: 0;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 150%;
+
+    text-align: center;
+    letter-spacing: 0.2em; /*расстояние между буквами*/
+    text-transform: uppercase; /*регистр текста*/
+
+    color: #89d5e6ea; /*цвет текста*/
+}
+
+/* content */
+
+input {
+    font: small-caption;
+    font-size: 15px;
+    color: #89d5e6ea;
+}
+
+.input {
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #89d5e6ea;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: transparent;
+    outline: 0;
+}
+
+.input::placeholder {
+    color: #89d5e6ea;
+}
+
+.content {
+
+}
+
+.login-container {
+    margin: 0;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 500px;
+    font-size: 15px;
+    padding: 10px;
+    
+    text-align: right;
+    color: #89d5e6ea;
+}
+
+.login {
+    margin: 0;
+    margin-bottom: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.login-text {
+    margin-right: 10px;
+}
+
+.password {
+    margin: 0;
+    margin-bottom: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.password-text {
+    margin-right: 10px;
+}
+
+.login-button {
+    background-color: transparent;
+    display: inline-block;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    
+    border: 3px solid #89d5e6ea;
+    border-radius: 50px;
+
+    color: #89d5e6ea;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 44px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s ease-in;
+}
+
+.login-button:hover {
+    border: 3px solid #89d5e600;
+    background-color: #89d5e677;
+    color: white;
+}
+
+.error-login {
+    margin: 0;
+    margin-right: 10px;
     margin-bottom: 10px;
+    color: rgba(255, 0, 0, 0.666);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* footer */
+
+.footer {
+    margin-top: auto;
+    padding-top: 200px;
+    padding-bottom: 0;
+    background: transparent;
+    color: #556982;
+}
+
+.footer-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.footer-copyright {
+    color: #89d5e6ea;
+    line-height: 1.3;
+}
+
+.fotter-copyright-name {
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.fotter-copyright p {
+    margin: 0;
+    margin-bottom: 15;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.footer-contacts {
+    
+}
+
+.footer-contacts p {
+    margin: 15px 0;
+    font-size: 16px;
+    line-height: 1.3;
+    color: #89d5e6ea;
+}
+
+.footer-button {
+    display: inline-block;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    
+    border: 3px solid #89d5e6ea;
+    border-radius: 50px;
+
+    color: #89d5e6ea;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 44px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-shadow:none;
+    transition: all 0.2s ease-in;
+}
+
+.footer-button:hover {
+    border: 3px solid #89d5e600;
+    background-color: #89d5e679;
+    color: white;
 }
