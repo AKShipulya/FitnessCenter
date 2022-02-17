@@ -9,16 +9,16 @@ CREATE TABLE IF NOT EXISTS user
     login VARCHAR(100),
     password VARCHAR(30),
     is_admin BOOL,
-    FOREIGN KEY (id) REFERENCES customer (id),
+    FOREIGN KEY (id) REFERENCES client (id),
     FOREIGN KEY (id) REFERENCES coach (coach_id)
 );
 
-CREATE TABLE IF NOT EXISTS customer
+CREATE TABLE IF NOT EXISTS client
 (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     sure_name VARCHAR(80) NOT NULL,
     middle_name VARCHAR(80) NOT NULL,
-    customer_type ENUM('DEFAULT', 'REGULAR', 'CORPORATE') NOT NULL,
+    client_type ENUM('DEFAULT', 'REGULAR', 'CORPORATE') NOT NULL,
     discount TINYINT,
     program VARCHAR(80)
 );
@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS customer
 CREATE TABLE IF NOT EXISTS order_program
 (
     order_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    customer_id BIGINT NOT NULL,
+    client_id BIGINT NOT NULL,
     program VARCHAR(80) NOT NULL,
     price DECIMAL(5,2) NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customer (id)
+    FOREIGN KEY (client_id) REFERENCES client (id)
 );
 
 CREATE TABLE IF NOT EXISTS coach
@@ -45,25 +45,25 @@ CREATE TABLE IF NOT EXISTS program
 (
     program_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     coach_id BIGINT,
-    customer_id BIGINT,
+    client_id BIGINT,
     name VARCHAR(80) NOT NULL,
     description VARCHAR(1000),
     gender ENUM('MALE','FEMALE') NOT NULL,
     has_meal_plan BOOLEAN,
     program_type ENUM('EXPERT','AMATEUR','BEGINNER','START'),
     FOREIGN KEY (coach_id) REFERENCES coach (coach_id),
-    FOREIGN KEY (customer_id) REFERENCES customer (id)
+    FOREIGN KEY (client_id) REFERENCES client (id)
 );
 
 CREATE TABLE IF NOT EXISTS feedback
 (
     feedback_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    customer_id BIGINT NOT NULL,
+    client_id BIGINT NOT NULL,
     program_id BIGINT NOT NULL,
     coach_id BIGINT NOT NULL,
     text MEDIUMTEXT NOT NULL,
     grade TINYINT NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customer (id),
+    FOREIGN KEY (client_id) REFERENCES client (id),
     FOREIGN KEY (coach_id) REFERENCES coach (coach_id),
     FOREIGN KEY (program_id) REFERENCES program (program_id)
 );

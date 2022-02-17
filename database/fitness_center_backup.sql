@@ -16,6 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `client`
+--
+
+DROP TABLE IF EXISTS `client`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `client` (
+  `id` bigint NOT NULL,
+  `name` varchar(80) NOT NULL,
+  `surname` varchar(80) NOT NULL,
+  `gender` enum('MALE','FEMALE') NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `client_type` enum('DEFAULT','REGULAR','CORPORATE') NOT NULL,
+  `discount` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `client`
+--
+
+LOCK TABLES `client` WRITE;
+/*!40000 ALTER TABLE `client` DISABLE KEYS */;
+/*!40000 ALTER TABLE `client` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `coach`
 --
 
@@ -23,15 +52,15 @@ DROP TABLE IF EXISTS `coach`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `coach` (
-  `coach_id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL,
   `name` varchar(80) NOT NULL,
-  `sure_name` varchar(80) NOT NULL,
+  `surname` varchar(80) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `password` varchar(30) NOT NULL,
   `qualification` enum('EXPERT','ADVANCED','BASE') NOT NULL,
-  `gender` enum('MALE','FEMALE') NOT NULL,
-  `customer_id` bigint DEFAULT NULL,
-  PRIMARY KEY (`coach_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `coach_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
+  `is_personal_coach` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -45,93 +74,6 @@ LOCK TABLES `coach` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `customer`
---
-
-DROP TABLE IF EXISTS `customer`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `customer` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `sure_name` varchar(80) NOT NULL,
-  `middle_name` varchar(80) NOT NULL,
-  `customer_type` enum('DEFAULT','REGULAR','CORPORATE') NOT NULL,
-  `discount` tinyint DEFAULT NULL,
-  `program` varchar(80) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `customer`
---
-
-LOCK TABLES `customer` WRITE;
-/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `feedback`
---
-
-DROP TABLE IF EXISTS `feedback`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `feedback` (
-  `feedback_id` bigint NOT NULL AUTO_INCREMENT,
-  `customer_id` bigint NOT NULL,
-  `program_id` bigint NOT NULL,
-  `coach_id` bigint NOT NULL,
-  `text` mediumtext NOT NULL,
-  `grade` tinyint NOT NULL,
-  PRIMARY KEY (`feedback_id`),
-  KEY `customer_id` (`customer_id`),
-  KEY `coach_id` (`coach_id`),
-  KEY `program_id` (`program_id`),
-  CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`coach_id`) REFERENCES `coach` (`coach_id`),
-  CONSTRAINT `feedback_ibfk_3` FOREIGN KEY (`program_id`) REFERENCES `program` (`program_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `feedback`
---
-
-LOCK TABLES `feedback` WRITE;
-/*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
-/*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `order_program`
---
-
-DROP TABLE IF EXISTS `order_program`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order_program` (
-  `order_id` bigint NOT NULL AUTO_INCREMENT,
-  `customer_id` bigint NOT NULL,
-  `program` varchar(80) NOT NULL,
-  `price` decimal(5,2) NOT NULL,
-  PRIMARY KEY (`order_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `order_program_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order_program`
---
-
-LOCK TABLES `order_program` WRITE;
-/*!40000 ALTER TABLE `order_program` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_program` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `program`
 --
 
@@ -139,19 +81,19 @@ DROP TABLE IF EXISTS `program`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `program` (
-  `program_id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `coach_id` bigint DEFAULT NULL,
-  `customer_id` bigint DEFAULT NULL,
+  `client_id` bigint DEFAULT NULL,
   `name` varchar(80) NOT NULL,
-  `description` varchar(1000) DEFAULT NULL,
-  `gender` enum('MALE','FEMALE') NOT NULL,
   `has_meal_plan` tinyint(1) DEFAULT NULL,
-  `program_type` enum('EXPERT','AMATEUR','BEGINNER','START') DEFAULT NULL,
-  PRIMARY KEY (`program_id`),
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `feedback` mediumtext,
+  PRIMARY KEY (`id`),
   KEY `coach_id` (`coach_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `program_ibfk_1` FOREIGN KEY (`coach_id`) REFERENCES `coach` (`coach_id`),
-  CONSTRAINT `program_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
+  KEY `client_id` (`client_id`),
+  CONSTRAINT `program_ibfk_1` FOREIGN KEY (`coach_id`) REFERENCES `coach` (`id`),
+  CONSTRAINT `program_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -165,30 +107,31 @@ LOCK TABLES `program` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
+-- Table structure for table `purpose`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `purpose`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
+CREATE TABLE `purpose` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `login` varchar(100) DEFAULT NULL,
-  `password` varchar(30) DEFAULT NULL,
-  `is_admin` tinyint(1) DEFAULT NULL,
+  `program_id` bigint DEFAULT NULL,
+  `exercises` mediumtext NOT NULL,
+  `equipment` mediumtext NOT NULL,
+  `meal` mediumtext NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `user_ibfk_2` FOREIGN KEY (`id`) REFERENCES `coach` (`coach_id`)
+  KEY `program_id` (`program_id`),
+  CONSTRAINT `purpose_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `program` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `purpose`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `purpose` WRITE;
+/*!40000 ALTER TABLE `purpose` DISABLE KEYS */;
+/*!40000 ALTER TABLE `purpose` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -200,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-09 16:43:56
+-- Dump completed on 2022-02-17 17:02:34
