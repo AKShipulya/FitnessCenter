@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    background-image: url(./../images/main/back-ground.jpg);
+    background-color: white;
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Montserrat', sans-serif; /*указание, какой будет шрифт*/
@@ -30,7 +30,7 @@ body {
     align-items: center; /*выравнивание по поперечной оси*/
 
     width: 100%;
-    height: 15vh; /*растягивание заливки по вертикали, т.к. при указании в % заливка будет только по содержанию хедера*/
+    height: 200; /*растягивание заливки по вертикали, т.к. при указании в % заливка будет только по содержанию хедера*/
 
     /*определяем модель flex-box для блока header*/
     /*background-image: url(path);*/
@@ -62,7 +62,14 @@ body {
     color: rgba(135,63,145,0.81); /*цвет текста*/
 }
 
-/* dropdown */
+/* dropdown btn*/
+
+.dropdown {
+    position: absolute;
+    margin-left: 900px;
+    bottom: 8px;
+    right: 16px;
+}
 
 .dropbtn {
     background-color: transparent;
@@ -81,15 +88,6 @@ body {
     text-transform: uppercase;
     text-decoration: none;
     transition: all 0.2s ease-in;
-}
-
-.dropdown {
-    margin: 0;
-    margin-top: 10px;
-    margin-left: 900px;
-
-    position: relative;
-    display: inline-block;
 }
 
 .dropdown-content {
@@ -146,11 +144,8 @@ input {
     color: rgba(135,63,145,0.81);
 }
 
-.content {
-
-}
-
 .login-container {
+    background-color:aqua;
     margin: 0;
     margin-top: 100px;
     margin-bottom: 100px;

@@ -24,27 +24,25 @@
             </div>
         </div>
     </header>
-
-    <main>
-        <section class="content">
-            <div class="login-container">
-                <div class="error-login">
-                    ${errorMessage}
-                </div>
-                <form method="post" action="controller?command=login">
-                    <div class="login">
-                        <lable class="login-text" for="login">${login}</lable>
-                        <input class="input" type="text" name="login" placeholder="Your login..."/>
-                    </div>
-                    <div class="password">
-                        <lable class="password-text" for="login">${password}</lable>
-                        <input class="input" type="password" name="password" placeholder="Your password..."/>
-                    </div>
-                    <input class="login-button" type="submit" value=${login}>
-                </form>
+  
+    <section class="content">
+        <div class="login-container">
+            <div class="error-login">
+                ${errorMessage}
             </div>
-        </section>
-    </main>
+            <form method="post" action="controller?command=login">
+                <div class="login">
+                    <lable class="login-text" for="login">${login}</lable>
+                    <input class="input" type="text" name="login" placeholder="Your login..."/>
+                </div>
+                <div class="password">
+                    <lable class="password-text" for="login">${password}</lable>
+                    <input class="input" type="password" name="password" placeholder="Your password..."/>
+                </div>
+                <input class="login-button" type="submit" value=${login}>
+            </form>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="content">
