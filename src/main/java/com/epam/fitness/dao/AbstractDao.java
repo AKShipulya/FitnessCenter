@@ -1,116 +1,46 @@
 package com.epam.fitness.dao;
 
-import com.epam.fitness.entity.AbstractDaoEntity;
 import com.epam.fitness.exception.DaoException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * The type Abstract dao.
- *
- * @param <T> the type parameter
+ * @param <T>
  */
-public abstract class AbstractDao<T extends AbstractDaoEntity> {
+public interface AbstractDao<T> {
     /**
-     * The constant logger.
-     */
-    protected static final Logger logger = LogManager.getLogger();
-    /**
-     * The constant DEFAULT_CONCAT_DELIMITER.
-     */
-    protected static final String DEFAULT_CONCAT_DELIMITER = ",";
-
-    /**
-     * The Connection.
-     */
-    protected Connection connection;
-
-    /**
-     * Find all list.
+     * Find entity by id
      *
-     * @return the list
-     * @throws DaoException the dao exception
+     * @param id the entity od
+     * @return optional of entity
+     * @throws DaoException
      */
-    public abstract List<T> findAll() throws DaoException;
+    Optional<T> findEntityById(long id) throws DaoException;
 
     /**
-     * Find by id optional.
+     * Find all entities
      *
-     * @param id the id
-     * @return the optional
-     * @throws DaoException the dao exception
+     * @return list of entity
+     * @throws DaoException
      */
-    public abstract Optional<T> findById(long id) throws DaoException;
+    List<T> findAllEntities() throws DaoException;
 
     /**
-     * Create boolean.
+     * Insert new entity
      *
      * @param entity the entity
-     * @return the boolean
-     * @throws DaoException the dao exception
+     * @return generated key
+     * @throws DaoException
      */
-    public abstract boolean create(T entity) throws DaoException;
+    long insertNewEntity(T entity) throws DaoException;
 
     /**
-     * Update boolean.
+     * Update entity if possible
      *
      * @param entity the entity
-     * @return the boolean
-     * @throws DaoException the dao exception
+     * @return true if successful
+     * @throws DaoException
      */
-    public abstract boolean update(T entity) throws DaoException;
-
-    /**
-     * Delete by id boolean.
-     *
-     * @param id the id
-     * @return the boolean
-     * @throws DaoException the dao exception
-     */
-    public abstract boolean deleteById(long id) throws DaoException;
-
-    /**
-     * Delete boolean.
-     *
-     * @param entity the entity
-     * @return the boolean
-     * @throws DaoException the dao exception
-     */
-    public boolean delete(T entity) throws DaoException {
-        return deleteById(entity.getId());
-    }
-
-    /**
-     * Map entity t.
-     *
-     * @param resultSet the result set
-     * @return the t
-     * @throws DaoException the dao exception
-     */
-    protected abstract T mapEntity(ResultSet resultSet) throws DaoException;
-
-    /**
-     * Sets prepared statement.
-     *
-     * @param statement the statement
-     * @param entity    the entity
-     * @throws DaoException the dao exception
-     */
-    protected abstract void setPreparedStatement(PreparedStatement statement, T entity) throws DaoException;
-
-    /**
-     * Set connection.
-     *
-     * @param connection the connection
-     */
-    void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
+    boolean updateEntity(T entity) throws DaoException;
 }

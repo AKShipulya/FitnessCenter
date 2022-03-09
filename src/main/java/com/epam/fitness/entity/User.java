@@ -1,492 +1,163 @@
 package com.epam.fitness.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
-/**
- * The type User.
- */
-public final class User extends AbstractDaoEntity {
-    private String username;
-    private String firstName;
-    private String lastName;
-    private String description;
+public class User implements Serializable {
+    private long id;
+    private String login;
     private String email;
-    private UserRole userRole;
+    private String passwordHash;
+    private String name;
+    private String surname;
+    private Role role;
     private Status status;
-    private double userRating;
-    private boolean isDeleted;
-    private List<Long> reviews;
+    private int payment;
 
-    private List<Long> cocktails;
-
-    private User(UserBuilder builder) {
-        super(builder.userId);
-        this.username = builder.username;
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
-        this.description = builder.description;
-        this.email = builder.email;
-        this.userRole = builder.userRole;
-        this.status = builder.status;
-        this.userRating = builder.userRating;
-        this.isDeleted = builder.isDeleted;
-        this.reviews = builder.reviews;
-        this.cocktails = builder.cocktails;
+    public enum Role {
+        GUEST, USER, ADMIN, VIP
     }
 
-
-    /**
-     * The enum Status.
-     */
     public enum Status {
-        /**
-         * Banned status.
-         */
-        BANNED,
-        /**
-         * Working status.
-         */
-        WORKING;
-
-        @Override
-        public String toString() {
-            return super.toString().toLowerCase();
-        }
-
-        /**
-         * Define status status.
-         *
-         * @param from the from
-         * @return the status
-         */
-        public static Status defineStatus(String from) {
-            return Status.valueOf(from.toUpperCase());
-        }
+        ACTIVATED, BLOCKED, NOT_CONFIRMED
     }
 
-    /**
-     * Gets username.
-     *
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
+    public long getId() {
+        return id;
     }
 
-    /**
-     * Gets first name.
-     *
-     * @return the first name
-     */
-    public String getFirstName() {
-        return firstName;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    /**
-     * Gets last name.
-     *
-     * @return the last name
-     */
-    public String getLastName() {
-        return lastName;
+    public String getLogin() {
+        return login;
     }
 
-    /**
-     * Gets email.
-     *
-     * @return the email
-     */
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    /**
-     * Gets description.
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Gets status.
-     *
-     * @return the status
-     */
-    public Status getStatus() {
-        return status;
-    }
-
-    /**
-     * Gets role.
-     *
-     * @return the role
-     */
-    public UserRole getRole() {
-        return userRole;
-    }
-
-    /**
-     * Is deleted boolean.
-     *
-     * @return the boolean
-     */
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    /**
-     * Gets cocktails.
-     *
-     * @return the cocktails
-     */
-    public List<Long> getCocktails() {
-        return new ArrayList<>(cocktails);
-    }
-
-    /**
-     * Gets reviews.
-     *
-     * @return the reviews
-     */
-    public List<Long> getReviews() {
-        return new ArrayList<>(cocktails);
-    }
-
-    /**
-     * Sets username.
-     *
-     * @param username the username
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
-     * Sets first name.
-     *
-     * @param firstName the first name
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * Sets last name.
-     *
-     * @param lastName the last name
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    /**
-     * Sets description.
-     *
-     * @param description the description
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * Sets email.
-     *
-     * @param email the email
-     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * Gets user role.
-     *
-     * @return the user role
-     */
-    public UserRole getUserRole() {
-        return userRole;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    /**
-     * Sets user role.
-     *
-     * @param userRole the user role
-     */
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
-    /**
-     * Sets status.
-     *
-     * @param status the status
-     */
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
     public void setStatus(Status status) {
         this.status = status;
     }
 
-    /**
-     * Sets deleted.
-     *
-     * @param deleted the deleted
-     */
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
+    public int getPayment() {
+        return payment;
     }
 
-    /**
-     * Sets reviews.
-     *
-     * @param reviews the reviews
-     */
-    public void setReviews(List<Long> reviews) {
-        this.reviews = reviews;
-    }
-
-    /**
-     * Sets cocktails.
-     *
-     * @param cocktails the cocktails
-     */
-    public void setCocktails(List<Long> cocktails) {
-        this.cocktails = cocktails;
-    }
-
-    /**
-     * Gets user rating.
-     *
-     * @return the user rating
-     */
-    public double getUserRating() {
-        return userRating;
-    }
-
-    /**
-     * Sets user rating.
-     *
-     * @param userRating the user rating
-     */
-    public void setUserRating(double userRating) {
-        this.userRating = userRating;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        if (!super.equals(o)) return false;
-
-        User user = (User) o;
-
-        if (Double.compare(user.userRating, userRating) != 0) return false;
-        if (isDeleted != user.isDeleted) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
-        if (description != null ? !description.equals(user.description) : user.description != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (userRole != user.userRole) return false;
-        if (status != user.status) return false;
-        if (reviews != null ? !reviews.equals(user.reviews) : user.reviews != null) return false;
-        return cocktails != null ? cocktails.equals(user.cocktails) : user.cocktails == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        long temp;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (userRole != null ? userRole.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        temp = Double.doubleToLongBits(userRating);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (isDeleted ? 1 : 0);
-        result = 31 * result + (reviews != null ? reviews.hashCode() : 0);
-        result = 31 * result + (cocktails != null ? cocktails.hashCode() : 0);
-        return result;
+    public void setPayment(int payment) {
+        this.payment = payment;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
-        sb.append("userId=").append(id);
-        sb.append(", username='").append(username).append('\'');
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", description='").append(description).append('\'');
+        sb.append("id=").append(id);
+        sb.append(", login='").append(login).append('\'');
         sb.append(", email='").append(email).append('\'');
-        sb.append(", userRole=").append(userRole);
+        sb.append(", password='").append(passwordHash).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", surname='").append(surname).append('\'');
+        sb.append(", role=").append(role);
         sb.append(", status=").append(status);
-        sb.append(", userRating=").append(userRating);
-        sb.append(", isDeleted=").append(isDeleted);
-        sb.append(", reviews=").append(reviews);
-        sb.append(", cocktails=").append(cocktails);
+        sb.append(", payment=").append(payment);
         sb.append('}');
         return sb.toString();
     }
 
-    /**
-     * The type User builder.
-     */
     public static class UserBuilder {
-        private long userId;
-        private String username;
-        private String firstName;
-        private String lastName;
-        private String description;
-        private String email;
-        private UserRole userRole;
-        private Status status;
-        private double userRating;
-        private boolean isDeleted;
-        private List<Long> reviews;
-        private List<Long> cocktails;
+        private User user = new User();
 
-        /**
-         * User id user builder.
-         *
-         * @param userId the user id
-         * @return the user builder
-         */
-        public UserBuilder userId(long userId) {
-            this.userId = userId;
+        public UserBuilder() {
+
+        }
+
+        public UserBuilder setId(long id) {
+            user.setId(id);
             return this;
         }
 
-        /**
-         * Username user builder.
-         *
-         * @param username the username
-         * @return the user builder
-         */
-        public UserBuilder username(String username) {
-            this.username = username;
+        public UserBuilder setRole(Role role) {
+            user.setRole(role);
             return this;
         }
 
-        /**
-         * First name user builder.
-         *
-         * @param firstName the first name
-         * @return the user builder
-         */
-        public UserBuilder firstName(String firstName) {
-            this.firstName = firstName;
+        public UserBuilder setStatus(Status status) {
+            user.setStatus(status);
             return this;
         }
 
-        /**
-         * Last name user builder.
-         *
-         * @param lastName the last name
-         * @return the user builder
-         */
-        public UserBuilder lastName(String lastName) {
-            this.lastName = lastName;
+        public UserBuilder setLogin(String login) {
+            user.setLogin(login);
             return this;
         }
 
-        /**
-         * Description user builder.
-         *
-         * @param description the description
-         * @return the user builder
-         */
-        public UserBuilder description(String description) {
-            this.description = description;
+        public UserBuilder setPassword(String password) {
+            user.setPasswordHash(password);
             return this;
         }
 
-        /**
-         * Email user builder.
-         *
-         * @param email the email
-         * @return the user builder
-         */
-        public UserBuilder email(String email) {
-            this.email = email;
+        public UserBuilder setName(String firstName) {
+            user.setName(firstName);
             return this;
         }
 
-        /**
-         * Reviews user builder.
-         *
-         * @param reviews the reviews
-         * @return the user builder
-         */
-        public UserBuilder reviews(List<Long> reviews) {
-            this.reviews = reviews;
+        public UserBuilder setSurname(String lastName) {
+            user.setSurname(lastName);
             return this;
         }
 
-        /**
-         * Role user builder.
-         *
-         * @param userRole the user role
-         * @return the user builder
-         */
-        public UserBuilder role(UserRole userRole) {
-            this.userRole = userRole;
+        public UserBuilder setEmail(String email) {
+            user.setEmail(email);
             return this;
         }
 
-        /**
-         * Status user builder.
-         *
-         * @param status the status
-         * @return the user builder
-         */
-        public UserBuilder status(Status status) {
-            this.status = status;
-            return this;
-        }
-
-        /**
-         * User rating user builder.
-         *
-         * @param userRating the user rating
-         * @return the user builder
-         */
-        public UserBuilder userRating(double userRating) {
-            this.userRating = userRating;
-            return this;
-        }
-
-        /**
-         * Is deleted user builder.
-         *
-         * @param isDeleted the is deleted
-         * @return the user builder
-         */
-        public UserBuilder isDeleted(boolean isDeleted) {
-            this.isDeleted = isDeleted;
-            return this;
-        }
-
-        /**
-         * Cocktails user builder.
-         *
-         * @param cocktails the cocktails
-         * @return the user builder
-         */
-        public UserBuilder cocktails(List<Long> cocktails) {
-            this.cocktails = cocktails;
-            return this;
-        }
-
-        /**
-         * Build user.
-         *
-         * @return the user
-         */
-        public User build() {
-            return new User(this);
+        public User buildUser() {
+            return user;
         }
     }
 }

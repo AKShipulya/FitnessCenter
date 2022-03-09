@@ -14,16 +14,16 @@ public class LoginCommand implements Command{
     }
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) {
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
 
         boolean valid = service.login(login, password);
         if (valid) {
-            req.getSession().setAttribute("user", "admin");
+            request.getSession().setAttribute("user", "admin");
             return "WEB-INF/view/main.jsp";
         } else {
-            req.setAttribute("errorMessage", "Invalid credentials");
+            request.setAttribute("errorMessage", "Invalid credentials");
             return "index.jsp";
         }
     }
