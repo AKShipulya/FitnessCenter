@@ -1,0 +1,260 @@
+/* FONTS */
+
+/* montserrat-regular - latin-ext_latin_cyrillic */
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('../fonts/montserrat-v23-latin-ext_latin_cyrillic-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/montserrat-v23-latin-ext_latin_cyrillic-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* montserrat-600 - latin-ext_latin_cyrillic */
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    src: local(''),
+         url('../fonts/montserrat-v23-latin-ext_latin_cyrillic-600.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/montserrat-v23-latin-ext_latin_cyrillic-600.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* montserrat-700 - latin-ext_latin_cyrillic */
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+         url('../fonts/montserrat-v23-latin-ext_latin_cyrillic-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/montserrat-v23-latin-ext_latin_cyrillic-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* montserrat-900 - latin-ext_latin_cyrillic */
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 900;
+    src: local(''),
+         url('../fonts/montserrat-v23-latin-ext_latin_cyrillic-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/montserrat-v23-latin-ext_latin_cyrillic-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+
+  /* box-sizing */
+
+  body {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: normal;
+    color: rgba(135,63,145,0.81);
+  }
+
+  html {
+      box-sizing: border-box;
+  }
+
+  *, *::before, *::after {
+      box-sizing: inherit;
+  }
+
+  /* HEADER */
+
+  .wrapper {
+      max-width: 1180px;
+      margin: 0 auto;
+  }
+
+  .header {
+
+  }
+
+  .logo_logo-pic {
+      margin-top: 40px;
+      margin-left: 304px;
+  }
+
+  .header_wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+
+  .header_list {
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  .header_item {
+      margin-top: 66px;
+      margin-right: 15px;
+  }
+
+  .header_item:last-child {
+      margin-right: 0;
+}
+
+/* dropdown language btn*/
+
+.dropdown {
+
+}
+
+.dropbtn {
+    background-color: transparent;
+    display: inline-block;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    border: 3px solid rgba(135,63,145,0.81);
+    border-radius: 50px;
+
+    color: rgba(135,63,145,0.81);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s ease-in;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: rgba(135,63,145,0.81);
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    border: 3px solid #89d5e600;
+    background-color: rgba(135,63,145,0.81);
+    color: white;
+}
+
+/* MAIN */
+
+input {
+    font: small-caption;
+    font-size: 15px;
+    color: rgba(135,63,145,0.81);
+    
+}
+
+.input {
+    width: 397px;
+    padding: 12px 20px;
+    margin-left: 101px;
+    display: inline-block;
+    border: 3px solid rgba(135,63,145,0.81);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: transparent;
+    outline: 0;
+}
+
+.input::placeholder {
+    color: rgba(135,63,145,0.81);
+}
+
+.login-container {
+    margin: auto;
+    margin-top: 87px;
+    max-width: 606px;
+    display: block;
+}
+
+.login {
+    margin-bottom: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.login-text {
+    margin-top: 10px;
+    margin-left: 101px;
+    display: block;
+}
+
+.password {
+    margin: 0;
+    margin-bottom: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.password-text {
+    margin-top: 31px;
+    margin-left: 101px;
+    display: block;
+}
+
+.login-button {
+    margin-top: 50px;
+    margin-left: 233px;
+    background-color: transparent;
+    display: inline-block;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    
+    border: 3px solid rgba(135,63,145,0.81);
+    border-radius: 50px;
+
+    color: rgba(135,63,145,0.81);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 44px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s ease-in;
+}
+
+.login-button:hover {
+    border: 3px solid #89d5e600;
+    background-color: rgba(135,63,145,0.81);
+    color: white;
+}
+
+.error-login {
+    margin-left: 233px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: rgba(255, 0, 0, 0.666);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* FOOTER */
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: left;
+  }
+
+.footer-copyright {
+    
+}

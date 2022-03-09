@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <html>
 <head>
-    <link rel="stylesheet" href="static/styles/style.css"/>
+    <link rel="stylesheet" href="../../css/main.css"/>
 </head>
 <body>
 <div class="container">
