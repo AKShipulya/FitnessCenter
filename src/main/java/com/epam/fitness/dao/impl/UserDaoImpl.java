@@ -16,7 +16,7 @@ import java.util.Optional;
 import static com.epam.fitness.dao.ColumnName.*;
 
 public class UserDaoImpl implements UserDao {
-    static Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
     private static final String INSERT_NEW_USER = "INSERT INTO user (id, login, email, password, name, surname, role, status, payment) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_USER = "UPDATE user SET login=?,email=?,password=?, name=?,surname=?,role=?,status=?,payment=? WHERE id=?";
     private static final String FIND_USER_BY_EMAIL = "SELECT user.id FROM user WHERE user.email=?";
@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Exception in method findEntityById of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method findEntityById of class UserDaoImpl" + e);
             throw new DaoException("Exception in method findEntityById of class UserDaoImpl" + e);
         }
         return optionalUser;
@@ -60,7 +60,7 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Exception in method findAllEntities of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method findAllEntities of class UserDaoImpl" + e);
             throw new DaoException("Exception in method findAllEntities of class UserDaoImpl" + e);
         }
         return users;
@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
                 return resultSet.getLong(1);
             }
         } catch (SQLException e) {
-            logger.error("Exception in method insertNewEntity of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method insertNewEntity of class UserDaoImpl" + e);
             throw new DaoException("Exception in method insertNewEntity of class UserDaoImpl" + e);
         }
     }
@@ -105,7 +105,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(9, entity.getId());
             result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.error("Exception in method updateEntity of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method updateEntity of class UserDaoImpl" + e);
             throw new DaoException("Exception in method updateEntity of class UserDaoImpl" + e);
         }
         return (result > 0);
@@ -121,7 +121,7 @@ public class UserDaoImpl implements UserDao {
                 return result;
             }
         } catch (SQLException e) {
-            logger.error("Exception in method isLoginExist of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method isLoginExist of class UserDaoImpl" + e);
             throw new DaoException("Exception in method isLoginExist of class UserDaoImpl" + e);
         }
     }
@@ -136,7 +136,7 @@ public class UserDaoImpl implements UserDao {
                 return result;
             }
         } catch (SQLException e) {
-            logger.error("Exception in method isEmailExist of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method isEmailExist of class UserDaoImpl" + e);
             throw new DaoException("Exception in method isEmailExist of class UserDaoImpl" + e);
         }
     }
@@ -153,7 +153,7 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            logger.error("Exception in method findUserByEmail of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method findUserByEmail of class UserDaoImpl" + e);
             throw new DaoException("Exception in method findUserByEmail of class UserDaoImpl" + e);
         }
         return user;
@@ -168,7 +168,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, userId);
             result = preparedStatement.executeUpdate() == 1;
         } catch (SQLException e) {
-            logger.error("Exception in method updateUserEmail of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method updateUserEmail of class UserDaoImpl" + e);
             throw new DaoException("Exception in method updateUserEmail of class UserDaoImpl" + e);
         }
         return result;
@@ -183,7 +183,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, userId);
             result = preparedStatement.executeUpdate() == 1;
         } catch (SQLException e) {
-            logger.error("Exception in method updateUserLogin of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method updateUserLogin of class UserDaoImpl" + e);
             throw new DaoException("Exception in method updateUserLogin of class UserDaoImpl" + e);
         }
         return result;
@@ -198,7 +198,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, userId);
             result = preparedStatement.executeUpdate() == 1;
         } catch (SQLException e) {
-            logger.error("Exception in method updateUserStatusById of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method updateUserStatusById of class UserDaoImpl" + e);
             throw new DaoException("Exception in method updateUserStatusById of class UserDaoImpl" + e);
         }
         return result;
@@ -213,7 +213,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, userId);
             result = preparedStatement.executeUpdate() == 1;
         } catch (SQLException e) {
-            logger.error("Exception in method updateUserStatusById of class UserDaoImpl" + e);
+            LOGGER.error("Exception in method updateUserStatusById of class UserDaoImpl" + e);
             throw new DaoException("Exception in method updateUserStatusById of class UserDaoImpl" + e);
         }
         return result;
