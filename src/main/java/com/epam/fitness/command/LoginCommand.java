@@ -1,6 +1,7 @@
 package com.epam.fitness.command;
 
 import com.epam.fitness.entity.User;
+import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ public class LoginCommand implements Command{
     }
 
     @Override
-    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws SecurityException{
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException{
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         Optional<User> user = service.login(login, password);

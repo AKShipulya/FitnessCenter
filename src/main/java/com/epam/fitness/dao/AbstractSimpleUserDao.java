@@ -1,5 +1,6 @@
 package com.epam.fitness.dao;
 
+import com.epam.fitness.entity.Identifiable;
 import com.epam.fitness.exception.DaoException;
 
 import java.sql.Connection;
@@ -8,11 +9,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbstractDao<T extends Identifiable> implements Dao<T> {
+public class AbstractSimpleUserDao<T extends Identifiable> implements SimpleUserDao<T> {
 
     private final Connection connection;
 
-    public AbstractDao(Connection connection) {
+    public AbstractSimpleUserDao(Connection connection) {
         this.connection = connection;
     }
 

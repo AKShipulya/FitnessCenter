@@ -13,6 +13,11 @@ public class User implements Serializable {
     private UserStatus userStatus;
     private int payment;
 
+    public User(long id, String login) {
+        this.id = id;
+        this.login = login;
+    }
+
     public long getId() {
         return id;
     }
