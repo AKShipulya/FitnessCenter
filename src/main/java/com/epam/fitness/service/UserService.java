@@ -1,6 +1,10 @@
 package com.epam.fitness.service;
 
+import com.epam.fitness.entity.User;
+
+import java.util.Optional;
+
 public interface UserService {
 
-    boolean login(String login, String password);
+    Optional<User> login(String login, String password);
 }

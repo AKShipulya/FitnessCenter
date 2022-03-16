@@ -1,5 +1,6 @@
 package com.epam.fitness.command;
 
+import com.epam.fitness.exception.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -7,5 +8,5 @@ import jakarta.servlet.http.HttpServletResponse;
  * The interface Client Command
  */
 public interface Command {
-    String execute(HttpServletRequest request, HttpServletResponse response);
+    CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException;
 }

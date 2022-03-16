@@ -2,45 +2,25 @@ package com.epam.fitness.dao;
 
 import com.epam.fitness.exception.DaoException;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-/**
- * @param <T>
- */
-public interface AbstractDao<T> {
-    /**
-     * Find entity by id
-     *
-     * @param id the entity od
-     * @return optional of entity
-     * @throws DaoException
-     */
-    Optional<T> findEntityById(long id) throws DaoException;
+public class AbstractDao<T extends Identifiable> implements Dao<T> {
 
-    /**
-     * Find all entities
-     *
-     * @return list of entity
-     * @throws DaoException
-     */
-    List<T> findAllEntities() throws DaoException;
+    private final Connection connection;
 
-    /**
-     * Insert new entity
-     *
-     * @param entity the entity
-     * @return generated key
-     * @throws DaoException
-     */
-    long insertNewEntity(T entity) throws DaoException;
+    public AbstractDao(Connection connection) {
+        this.connection = connection;
+    }
 
-    /**
-     * Update entity if possible
-     *
-     * @param entity the entity
-     * @return true if successful
-     * @throws DaoException
-     */
-    boolean updateEntity(T entity) throws DaoException;
+    protected List<T> executeQuery(String query, RowMapper<T> rowMapper, Object... parameters) throws DaoException {
+        try (PreparedStatement preparedStatement = buildPreparedStatement(query, parameters)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<T> entities = new ArrayList<>();
+            while (resultSet.next())
+        }
+    }
 }
