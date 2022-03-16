@@ -1,6 +1,7 @@
 package com.epam.fitness.exception;
 
 public class DatabaseConnectionException extends Exception {
+
     public DatabaseConnectionException() {
         super();
     }
