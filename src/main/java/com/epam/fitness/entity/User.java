@@ -9,17 +9,9 @@ public class User implements Serializable {
     private String passwordHash;
     private String name;
     private String surname;
-    private Role role;
-    private Status status;
+    private UserRole userRole;
+    private UserStatus userStatus;
     private int payment;
-
-    public enum Role {
-        GUEST, USER, ADMIN, VIP
-    }
-
-    public enum Status {
-        ACTIVATED, BLOCKED, NOT_CONFIRMED
-    }
 
     public long getId() {
         return id;
@@ -69,20 +61,20 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
-    public Role getRole() {
-        return role;
+    public UserRole getUserRole() {
+        return userRole;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
-    public Status getStatus() {
-        return status;
+    public UserStatus getUserStatus() {
+        return userStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
     }
 
     public int getPayment() {
@@ -102,62 +94,10 @@ public class User implements Serializable {
         sb.append(", password='").append(passwordHash).append('\'');
         sb.append(", name='").append(name).append('\'');
         sb.append(", surname='").append(surname).append('\'');
-        sb.append(", role=").append(role);
-        sb.append(", status=").append(status);
+        sb.append(", role=").append(userRole);
+        sb.append(", status=").append(userStatus);
         sb.append(", payment=").append(payment);
         sb.append('}');
         return sb.toString();
-    }
-
-    public static class UserBuilder {
-        private User user = new User();
-
-        public UserBuilder() {
-
-        }
-
-        public UserBuilder setId(long id) {
-            user.setId(id);
-            return this;
-        }
-
-        public UserBuilder setRole(Role role) {
-            user.setRole(role);
-            return this;
-        }
-
-        public UserBuilder setStatus(Status status) {
-            user.setStatus(status);
-            return this;
-        }
-
-        public UserBuilder setLogin(String login) {
-            user.setLogin(login);
-            return this;
-        }
-
-        public UserBuilder setPassword(String password) {
-            user.setPasswordHash(password);
-            return this;
-        }
-
-        public UserBuilder setName(String firstName) {
-            user.setName(firstName);
-            return this;
-        }
-
-        public UserBuilder setSurname(String lastName) {
-            user.setSurname(lastName);
-            return this;
-        }
-
-        public UserBuilder setEmail(String email) {
-            user.setEmail(email);
-            return this;
-        }
-
-        public User buildUser() {
-            return user;
-        }
     }
 }
