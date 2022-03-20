@@ -2,7 +2,7 @@ package com.epam.fitness.entity;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User implements Serializable, Identifiable {
     private long id;
     private String login;
     private String email;
@@ -18,7 +18,8 @@ public class User implements Serializable {
         this.login = login;
     }
 
-    public long getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
@@ -105,4 +106,5 @@ public class User implements Serializable {
         sb.append('}');
         return sb.toString();
     }
+
 }
