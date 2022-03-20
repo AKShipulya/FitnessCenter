@@ -32,27 +32,27 @@ public class ProxyConnection implements Connection {
 
     @Override
     public String nativeSQL(String sql) throws SQLException {
-        return null;
+        return connection.nativeSQL(sql);
     }
 
     @Override
     public void setAutoCommit(boolean autoCommit) throws SQLException {
-
+        connection.setAutoCommit(autoCommit);
     }
 
     @Override
     public boolean getAutoCommit() throws SQLException {
-        return false;
+        return connection.getAutoCommit();
     }
 
     @Override
     public void commit() throws SQLException {
-
+        connection.commit();
     }
 
     @Override
     public void rollback() throws SQLException {
-
+        connection.rollback();
     }
 
     @Override
@@ -62,27 +62,27 @@ public class ProxyConnection implements Connection {
 
     @Override
     public boolean isClosed() throws SQLException {
-        return false;
+        return connection.isClosed();
     }
 
     @Override
     public DatabaseMetaData getMetaData() throws SQLException {
-        return null;
+        return connection.getMetaData();
     }
 
     @Override
     public void setReadOnly(boolean readOnly) throws SQLException {
-
+        connection.setReadOnly(readOnly);
     }
 
     @Override
     public boolean isReadOnly() throws SQLException {
-        return false;
+        return connection.isReadOnly();
     }
 
     @Override
     public void setCatalog(String catalog) throws SQLException {
-
+        connection.setCatalog(catalog);
     }
 
     @Override

@@ -2,7 +2,12 @@ package com.epam.fitness.entity;
 
 import java.io.Serializable;
 
-public class User implements Serializable, Identifiable {
+public class User implements Identifiable {
+
+    public static final String TABLE = "user";
+    public static final String ID = "id";
+    public static final String NAME = "name";
+
     private long id;
     private String login;
     private String email;

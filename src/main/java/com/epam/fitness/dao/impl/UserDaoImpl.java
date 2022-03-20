@@ -4,6 +4,8 @@ import com.epam.fitness.dao.AbstractDao;
 import com.epam.fitness.dao.UserDao;
 import com.epam.fitness.entity.User;
 import com.epam.fitness.exception.DaoException;
+import com.epam.fitness.mapper.RowMapper;
+import com.epam.fitness.mapper.UserRowMapper;
 
 import java.sql.Connection;
 import java.util.List;
@@ -15,7 +17,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static final String FIND_USER_BY_ID = "SELECT * FROM user WHERE id=?";
 
     public UserDaoImpl(Connection connection) {
-        super(connection);
+        super(connection, new UserRowMapper());
     }
 
     @Override
@@ -24,7 +26,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public Optional<User> getById(Long id) {
+    public Optional<User> getById(Long id) throws DaoException {
         return executeForSingleResult(FIND_USER_BY_ID, new UserRowMapper(), id);
     }
 

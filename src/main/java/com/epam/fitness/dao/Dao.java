@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface Dao<T> {
 
-    Optional<T> getById(Long id);
+    Optional<T> getById(Long id) throws DaoException;
 
     List<T> getAll() throws DaoException;
 

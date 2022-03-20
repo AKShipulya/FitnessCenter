@@ -2,8 +2,8 @@ package com.epam.fitness.dao;
 
 import com.epam.fitness.entity.Identifiable;
 import com.epam.fitness.exception.DaoException;
+import com.epam.fitness.mapper.RowMapper;
 
-import javax.swing.tree.RowMapper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,17 +15,19 @@ import java.util.Optional;
 public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 
     private final Connection connection;
+    private final RowMapper<T> rowMapper;
 
-    public AbstractDao(Connection connection) {
+    public AbstractDao(Connection connection, RowMapper<T> rowMapper) {
         this.connection = connection;
+        this.rowMapper = rowMapper;
     }
 
-    protected List<T> executeQuery(String query, RowMapper<T> rowMapper, Object... parameters) throws DaoException {
+    protected List<T> executeQuery(String query, Object... parameters) throws DaoException {
         try (PreparedStatement statement = createStatement(query, parameters)) {
             ResultSet resultSet = statement.executeQuery(query);
             List<T> entities = new ArrayList<>();
             while (resultSet.next()) {
-                T entity = mapper.map(resultSet);
+                T entity = rowMapper.map(resultSet);
                 entities.add(entity);
             }
             return entities;
@@ -48,8 +50,8 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
         return executeQuery("SELECT * FROM " + table, mapper);
     }
 
-    protected Optional<T> executeForSingleResult(String query, RowMapper<T> mapper, Object... params) throws DaoException {
-        List<T> items = executeQuery(query, mapper, params);
+    protected Optional<T> executeForSingleResult(String query, Object... params) throws DaoException {
+        List<T> items = executeQuery(query, rowMapper, params);
         if (items.size() == 1) {
             return Optional.of(items.get(0));
         } else if (items.size() > 1) {

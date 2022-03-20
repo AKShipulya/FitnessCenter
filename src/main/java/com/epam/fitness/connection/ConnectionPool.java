@@ -13,6 +13,7 @@ public class ConnectionPool {
 
     private static ConnectionPool instance;
 
+    private final ConnectionFactory connectionFactory = new ConnectionFactory();
     private final ReentrantLock connectionsLock = new ReentrantLock();
     private final Queue<ProxyConnection> availableConnections;
     private final Queue<ProxyConnection> connectionsInUse;
@@ -49,7 +50,7 @@ public class ConnectionPool {
     }
 
     public ProxyConnection getConnection() {
-        return ConnectionFactory.create();
+        return connectionFactory.create();
         // TODO: 20.03.2022 Must return free connection from availableConnections
     }
 }
